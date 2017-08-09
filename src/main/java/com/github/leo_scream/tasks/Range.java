@@ -33,7 +33,7 @@ public interface Range {
         int listSize = this.upperBound() - this.lowerBound() + 1;
         List<Integer> list = new ArrayList<>(listSize);
 
-        for (int i = this.lowerBound(); i <= this.upperBound(); i++){
+        for (int i = this.lowerBound(); i <= this.upperBound(); i++) {
             list.add(i);
         }
 
@@ -45,20 +45,19 @@ public interface Range {
     }
 
     static Range bounds(final int lower, final int upper) {
-        if (lower > upper){
+        if (lower > upper) {
             throw new IllegalArgumentException("lower border cannot exceed upper border");
-        } else {
-            return new Range() {
-                @Override
-                public int lowerBound() {
-                    return lower;
-                }
-
-                @Override
-                public int upperBound() {
-                    return upper;
-                }
-            };
         }
+        return new Range() {
+            @Override
+            public int lowerBound() {
+                return lower;
+            }
+
+            @Override
+            public int upperBound() {
+                return upper;
+            }
+        };
     }
 }
