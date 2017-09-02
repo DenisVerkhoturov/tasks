@@ -13,7 +13,12 @@ public interface Traversable<T> {
     void forEach(final Consumer<T> consumer);
 
     default Traversable<T> filter(final Predicate<T> predicate) {
-        throw new UnsupportedOperationException();
+        if (predicate == null) throw new NullPointerException();
+        return consumer -> forEach(item -> {
+            if (predicate.test(item) == true){
+                consumer.accept(item);
+            }
+        });
     }
 
     default <R> Traversable<R> map(final Function<T, R> mapper) {
