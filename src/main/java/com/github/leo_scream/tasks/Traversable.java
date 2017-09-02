@@ -27,7 +27,9 @@ public interface Traversable<T> {
     }
 
     default <R> Traversable<R> flatMap(final Function<T, List<R>> mapper) {
-        throw new UnsupportedOperationException();
+        if (mapper == null) throw new NullPointerException();
+        return consumer -> forEach(item -> mapper.apply(item).forEach(consumer));
+
     }
 
     default List<T> toList() {
