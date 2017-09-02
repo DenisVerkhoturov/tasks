@@ -1,5 +1,6 @@
 package com.github.leo_scream.tasks;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -12,22 +13,32 @@ public interface Traversable<T> {
     void forEach(final Consumer<T> consumer);
 
     default Traversable<T> filter(final Predicate<T> predicate) {
-        throw new UnsupportedOperationException();
+        if (predicate == null) throw new NullPointerException();
+        return consumer -> forEach(item -> {
+            if (predicate.test(item) == true){
+                consumer.accept(item);
+            }
+        });
     }
 
     default <R> Traversable<R> map(final Function<T, R> mapper) {
-        throw new UnsupportedOperationException();
+        if (mapper == null) throw new NullPointerException();
+        return consumer -> forEach(item -> consumer.accept(mapper.apply(item)));
     }
 
     default <R> Traversable<R> flatMap(final Function<T, List<R>> mapper) {
-        throw new UnsupportedOperationException();
+        if (mapper == null) throw new NullPointerException();
+        return consumer -> forEach(item -> mapper.apply(item).forEach(consumer));
+
     }
 
     default List<T> toList() {
-        throw new UnsupportedOperationException();
+        List<T> list = new ArrayList<>();
+        this.forEach(list::add);
+        return list;
     }
 
     static <T> Traversable<T> from(final List<T> list) {
-        throw new UnsupportedOperationException();
+        return list::forEach;
     }
 }
