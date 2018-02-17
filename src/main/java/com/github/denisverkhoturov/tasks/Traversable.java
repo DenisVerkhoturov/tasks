@@ -1,4 +1,4 @@
-package com.github.leo_scream.tasks;
+package com.github.denisverkhoturov.tasks;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -6,7 +6,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
- * Specification: src/test/kotlin/com/github/leo_scream/tasks/TraversableSpec.kt
+ * Specification: src/test/kotlin/com/github/denisverkhoturov/tasks/TraversableSpec.kt
  */
 public interface Traversable<T> {
     void forEach(final Consumer<T> consumer);

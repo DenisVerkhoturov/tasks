@@ -1,4 +1,4 @@
-package com.github.leo_scream.tasks;
+package com.github.denisverkhoturov.tasks;
 
 import java.util.*;
 import java.util.function.Consumer;

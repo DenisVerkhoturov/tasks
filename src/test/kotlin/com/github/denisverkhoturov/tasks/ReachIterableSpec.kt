@@ -1,4 +1,4 @@
-package com.github.leo_scream.tasks
+package com.github.denisverkhoturov.tasks
 
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.describe
